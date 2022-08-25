@@ -25,6 +25,7 @@ btn.forEach(btn => {btn.addEventListener('click', (e) => {
     convertNumber(clickValue);
     console.log(clickValue + ' click value');
     if (typeof clickValue == 'number') {
+        controlNum += clickValue;
         tally += clickValue;
         if (tally == 0) {
             tally = '';
@@ -36,14 +37,17 @@ btn.forEach(btn => {btn.addEventListener('click', (e) => {
     }
     operate();
     console.log(firstNum + ' first num');
+    console.log(controlNum + ' control num');
     console.log(tally + ' tally');
     console.log(sign + ' sign');
+    console.log('***********');
     });
 });
 
 let tally = '';
 let clickValue;
 let firstNum;
+let controlNum = '';
 let sign;
 
 
@@ -103,7 +107,7 @@ function maxChars(value) {
 
 function operate() {
     if (clickValue == 'plus' || clickValue == 'minus' || clickValue == 'multiply' || clickValue == 'divide' || clickValue == 'equals') {
-        if (firstNum) {
+        if (firstNum && clickValue != 'equals') {
             if (sign == 'plus') {
                 tally = add(parseInt(firstNum), parseInt(tally));
             }
@@ -118,12 +122,28 @@ function operate() {
             }
             display();
         }
+        
         if (clickValue != 'equals') {
             firstNum = tally;
+            controlNum = '';
             tally = '';
             sign = clickValue;
+        } else if (clickValue == 'equals') {
+            if (sign == 'plus') {
+                tally = add(parseInt(controlNum), parseInt(firstNum));
+            }
+            if (sign == 'minus') {
+                tally = sub(parseInt(firstNum), parseInt(controlNum));
+            }
+            if (sign == 'multiply') {
+                tally = mult(parseInt(controlNum), parseInt(firstNum));
+            }
+            if (sign == 'divide') {
+                tally = div(parseInt(firstNum), parseInt(controlNum));
+            }
+            firstNum = tally;
+            display();
+            
         }
     }
 }
-
-// Currently trying to get the equals function to act like the calculator on my computer
