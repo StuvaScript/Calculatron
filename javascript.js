@@ -23,11 +23,19 @@ const btn = document.querySelectorAll('.button');
 btn.forEach(btn => {btn.addEventListener('click', (e) => {
     clickValue = e.target.id;
     convertNumber(clickValue);
+    console.log(clickValue + ' click value');
     if (typeof clickValue == 'number') {
         tally += clickValue;
-        display(maxChars(tally));
+        console.log(tally + ' tally')
+        if (tally == 0) {
+            tally = '';
+        }
+        maxChars(tally);
+        console.log(maxChars(tally) + ' max')
+        if (maxChars(tally)) {
+            display();
+        }
     }
-    
     });
 });
 
@@ -77,6 +85,11 @@ function display() {
 
 function maxChars(value) {
     let str = value.toString().split('');
+    console.log(str + ' str');
+    if (str[0] == 0) {
+        str.shift();
+    }
+    console.log(str + ' str after');
     if (str.length > 12) {
         let twelve = str.slice(0, 12);
         let join = twelve.join('');
