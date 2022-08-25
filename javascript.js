@@ -22,14 +22,18 @@ function div(x, y) {
 const btn = document.querySelectorAll('.button');
 btn.forEach(btn => {btn.addEventListener('click', (e) => {
     clickValue = e.target.id;
-    console.log(clickValue + ' clickValue');
     convertNumber(clickValue);
-    console.log(clickValue + ' post function');
-    display(clickValue);
+    if (typeof clickValue == 'number') {
+        tally += clickValue;
+        display(maxChars(tally));
+    }
+    
     });
 });
 
+let tally = '';
 let clickValue;
+
 
 function convertNumber() {
     switch (clickValue) {
@@ -66,9 +70,18 @@ function convertNumber() {
     }
 }
 
-function display(numb) {
-    if (typeof numb == 'number') {
-        const display = document.querySelector('.display');
-        display.textContent += numb;
-    }
+function display() {
+    const display = document.querySelector('.display');
+    display.textContent = maxChars(tally);
+}
+
+function maxChars(value) {
+    let str = value.toString().split('');
+    if (str.length > 12) {
+        let twelve = str.slice(0, 12);
+        let join = twelve.join('');
+        return parseInt(join);
+    };
+    let join = str.join('');
+    return parseInt(join);
 }
