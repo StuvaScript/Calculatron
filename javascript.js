@@ -1,5 +1,5 @@
 
-// Basic Math Operators
+// Basic Math operators
 
 function add(x, y) {
     return x + y;
@@ -26,21 +26,25 @@ btn.forEach(btn => {btn.addEventListener('click', (e) => {
     console.log(clickValue + ' click value');
     if (typeof clickValue == 'number') {
         tally += clickValue;
-        console.log(tally + ' tally')
         if (tally == 0) {
             tally = '';
         }
         maxChars(tally);
-        console.log(maxChars(tally) + ' max')
         if (maxChars(tally)) {
             display();
         }
     }
+    operate();
+    console.log(firstNum + ' first num');
+    console.log(tally + ' tally');
+    console.log(sign + ' sign');
     });
 });
 
 let tally = '';
 let clickValue;
+let firstNum;
+let sign;
 
 
 function convertNumber() {
@@ -85,11 +89,9 @@ function display() {
 
 function maxChars(value) {
     let str = value.toString().split('');
-    console.log(str + ' str');
     if (str[0] == 0) {
         str.shift();
     }
-    console.log(str + ' str after');
     if (str.length > 12) {
         let twelve = str.slice(0, 12);
         let join = twelve.join('');
@@ -98,3 +100,30 @@ function maxChars(value) {
     let join = str.join('');
     return parseInt(join);
 }
+
+function operate() {
+    if (clickValue == 'plus' || clickValue == 'minus' || clickValue == 'multiply' || clickValue == 'divide' || clickValue == 'equals') {
+        if (firstNum) {
+            if (sign == 'plus') {
+                tally = add(parseInt(firstNum), parseInt(tally));
+            }
+            if (sign == 'minus') {
+                tally = sub(parseInt(firstNum), parseInt(tally));
+            }
+            if (sign == 'multiply') {
+                tally = mult(parseInt(firstNum), parseInt(tally));
+            }
+            if (sign == 'divide') {
+                tally = div(parseInt(firstNum), parseInt(tally));
+            }
+            display();
+        }
+        if (clickValue != 'equals') {
+            firstNum = tally;
+            tally = '';
+            sign = clickValue;
+        }
+    }
+}
+
+// Currently trying to get the equals function to act like the calculator on my computer
