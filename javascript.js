@@ -35,6 +35,7 @@ btn.forEach(btn => {btn.addEventListener('click', (e) => {
         }
     }
     operate();
+    clear();
     console.log(firstNum + ' first num');
     console.log(controlNum + ' control num');
     console.log(tally + ' tally');
@@ -174,5 +175,18 @@ function operate() {
             firstNum = tally;
             display();
         }
+    }
+}
+
+function clear() {
+    if (clickValue == 'clear') {
+        tally = '';
+        clickValue = '';
+        firstNum = '';
+        controlNum = '';
+        sign = '';
+        equalToggle = false;
+        tally = '';
+        display();
     }
 }
