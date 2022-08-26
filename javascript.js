@@ -97,13 +97,13 @@ function maxChars(value) {
     if (str[0] == 0) {
         str.shift();
     }
-    if (str.length > 12) {
-        let twelve = str.slice(0, 12);
+    if (str.length > 14) {
+        let twelve = str.slice(0, 14);
         let join = twelve.join('');
-        return parseInt(join);
+        return +join;
     };
     let join = str.join('');
-    return parseInt(join);
+    return +join;
 }
 
 function operate() {
