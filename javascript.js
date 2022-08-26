@@ -1,6 +1,4 @@
 
-// Basic Math operators
-
 function add(x, y) {
     return x + y;
 }
@@ -17,8 +15,6 @@ function div(x, y) {
     return x / y;
 }
 
-// function operate() // to be continued...
-
 const btn = document.querySelectorAll('.button');
 btn.forEach(btn => {btn.addEventListener('click', (e) => {
     clickValue = e.target.id;
@@ -26,6 +22,9 @@ btn.forEach(btn => {btn.addEventListener('click', (e) => {
     console.log(clickValue + ' click value');
     if (typeof clickValue == 'number') {
         controlNum += clickValue;
+        if (controlNum == 0) {
+            controlNum = '';
+        }
         tally += clickValue;
         if (tally == 0) {
             tally = '';
@@ -40,6 +39,7 @@ btn.forEach(btn => {btn.addEventListener('click', (e) => {
     console.log(controlNum + ' control num');
     console.log(tally + ' tally');
     console.log(sign + ' sign');
+    console.log(equalToggle + ' equal toggle');
     console.log('***********');
     });
 });
@@ -49,6 +49,7 @@ let clickValue;
 let firstNum;
 let controlNum = '';
 let sign;
+let equalToggle = false;
 
 
 function convertNumber() {
@@ -106,7 +107,34 @@ function maxChars(value) {
 }
 
 function operate() {
+    if (equalToggle == true && clickValue != 'equals') {
+        if (typeof clickValue == 'number') {
+            tally = '';
+            controlNum = ''; 
+            controlNum += clickValue;
+            if (controlNum == 0) {
+                controlNum = '';
+            }
+            tally += clickValue;
+            if (tally == 0) {
+                tally = '';
+            }
+            maxChars(tally);
+            if (maxChars(tally)) {
+                display();
+            }
+        }
+        firstNum = '';
+        equalToggle = false;
+    }
+
     if (clickValue == 'plus' || clickValue == 'minus' || clickValue == 'multiply' || clickValue == 'divide' || clickValue == 'equals') {
+        
+        if (!tally) {
+            sign = clickValue;
+            return;
+        }
+
         if (firstNum && clickValue != 'equals') {
             if (sign == 'plus') {
                 tally = add(parseInt(firstNum), parseInt(tally));
@@ -127,8 +155,10 @@ function operate() {
             firstNum = tally;
             controlNum = '';
             tally = '';
+            sign = '';
             sign = clickValue;
         } else if (clickValue == 'equals') {
+            equalToggle = true;
             if (sign == 'plus') {
                 tally = add(parseInt(controlNum), parseInt(firstNum));
             }
@@ -143,7 +173,6 @@ function operate() {
             }
             firstNum = tally;
             display();
-            
         }
     }
 }
