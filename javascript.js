@@ -34,11 +34,14 @@ btn.forEach(btn => {btn.addEventListener('click', (e) => {
             display();
         }
     }
+    percent();
+    posNeg();
     operate();
     clear();
     console.log(firstNum + ' first num');
     console.log(controlNum + ' control num');
     console.log(tally + ' tally');
+    console.log(maxChars(tally) + ' max chars tally');
     console.log(sign + ' sign');
     console.log(equalToggle + ' equal toggle');
     console.log('***********');
@@ -138,16 +141,16 @@ function operate() {
 
         if (firstNum && clickValue != 'equals') {
             if (sign == 'plus') {
-                tally = add(parseInt(firstNum), parseInt(tally));
+                tally = add(+firstNum, +tally);
             }
             if (sign == 'minus') {
-                tally = sub(parseInt(firstNum), parseInt(tally));
+                tally = sub(+firstNum, +tally);
             }
             if (sign == 'multiply') {
-                tally = mult(parseInt(firstNum), parseInt(tally));
+                tally = mult(+firstNum, +tally);
             }
             if (sign == 'divide') {
-                tally = div(parseInt(firstNum), parseInt(tally));
+                tally = div(+firstNum, +tally);
             }
             display();
         }
@@ -161,16 +164,16 @@ function operate() {
         } else if (clickValue == 'equals') {
             equalToggle = true;
             if (sign == 'plus') {
-                tally = add(parseInt(controlNum), parseInt(firstNum));
+                tally = add(+controlNum, +firstNum);
             }
             if (sign == 'minus') {
-                tally = sub(parseInt(firstNum), parseInt(controlNum));
+                tally = sub(+firstNum, +controlNum);
             }
             if (sign == 'multiply') {
-                tally = mult(parseInt(controlNum), parseInt(firstNum));
+                tally = mult(+controlNum, +firstNum);
             }
             if (sign == 'divide') {
-                tally = div(parseInt(firstNum), parseInt(controlNum));
+                tally = div(+firstNum, +controlNum);
             }
             firstNum = tally;
             display();
@@ -186,7 +189,22 @@ function clear() {
         controlNum = '';
         sign = '';
         equalToggle = false;
-        tally = '';
+        display();
+    }
+}
+
+function posNeg() {
+    if (clickValue == 'pos-neg') {
+        tally = tally * (-1);
+        controlNum = controlNum * (-1);
+        display();
+    }
+}
+
+function percent() {
+    if (clickValue == 'percent') {
+        tally = tally * 0.01;
+        controlNum = controlNum * 0.01;
         display();
     }
 }
