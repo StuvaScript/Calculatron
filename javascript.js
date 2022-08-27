@@ -18,21 +18,19 @@ function div(x, y) {
 const btn = document.querySelectorAll('.button');
 btn.forEach(btn => {btn.addEventListener('click', (e) => {
     clickValue = e.target.id;
-    convertNumber(clickValue);
+    convertNumber();
+    convertPeriod();
     console.log(clickValue + ' click value');
-    if (typeof clickValue == 'number') {
+    if (typeof clickValue == 'number' || clickValue == '.') {
         controlNum += clickValue;
-        if (controlNum == 0) {
+        if (controlNum == 0 && clickValue != '.') {
             controlNum = '';
         }
         tally += clickValue;
-        if (tally == 0) {
+        if (tally == 0 && clickValue != '.') {
             tally = '';
         }
-        maxChars(tally);
-        if (maxChars(tally)) {
-            display();
-        }
+        display();
     }
     percent();
     posNeg();
@@ -91,14 +89,29 @@ function convertNumber() {
     }
 }
 
+function convertPeriod() {
+    if (clickValue == 'period') {
+        clickValue = '.';
+    }
+}
+
 function display() {
     const display = document.querySelector('.display');
-    display.textContent = maxChars(tally);
+    if (!maxChars(tally) && clickValue == '.') {
+        display.textContent = '0.';
+    } else if (maxChars(tally) && clickValue == '.') {
+        display.textContent = maxChars(tally) + '.';
+    } else if (maxChars(tally) && clickValue != '.') {
+        display.textContent = maxChars(tally);
+    }
+    if (clickValue == 'clear') {
+        clear();
+    }
 }
 
 function maxChars(value) {
     let str = value.toString().split('');
-    if (str[0] == 0) {
+    if (str[0] == 0 && clickValue != '.') {
         str.shift();
     }
     if (str.length > 14) {
@@ -208,3 +221,9 @@ function percent() {
         display();
     }
 }
+//Currently trying to figure out why "clear" is not clearing the screen. The last thing I messed with that fudged it up was messing around with the conditionals in the display() function.
+
+
+// When you hit equals followed by any number, everything resets to start a new equation. But when you hit equals followed by a zero, nothing happens. Fix this.
+
+//Larger numbers get converted into exponents and then fudge up whats displayed on the screen. Fix this.
