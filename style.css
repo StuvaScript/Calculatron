@@ -68,6 +68,12 @@ div #equals {
     align-items: center;
 }
 
+.button:hover {
+    filter: brightness(0.65);
+    cursor: default;
+    user-select: none;
+}
+
 .fa-solid {
     font-size: 0.75em;
 }
