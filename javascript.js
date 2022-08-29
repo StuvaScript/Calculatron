@@ -16,6 +16,15 @@ function div(x, y) {
 }
 
 const btn = document.querySelectorAll('.button');
+
+btn.forEach(btn => btn.addEventListener('mousedown', () => {
+    btn.style.cssText = 'filter: brightness(0.50);';
+}));
+
+btn.forEach(btn => btn.addEventListener('mouseup', () => {
+    btn.style.cssText = 'filter: brightness(auto);';
+}));
+
 btn.forEach(btn => {btn.addEventListener('click', (e) => {
     clickValue = e.target.id;
     convertNumber();
