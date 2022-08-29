@@ -20,17 +20,21 @@ btn.forEach(btn => {btn.addEventListener('click', (e) => {
     clickValue = e.target.id;
     convertNumber();
     convertPeriod();
+    back(tally);
     console.log(clickValue + ' click value');
     if (typeof clickValue == 'number' || clickValue == '.') {
         controlNum += clickValue;
-        if (controlNum == 0 && clickValue != '.') {
+        if (controlNum == 0) {
             controlNum = '';
         }
         tally += clickValue;
-        if (tally == 0 && clickValue != '.') {
+        if (tally == 0) {
             tally = '';
         }
-        display();
+        maxChars(tally);
+        if (maxChars(tally)) {
+            display();
+        }
     }
     percent();
     posNeg();
@@ -97,29 +101,23 @@ function convertPeriod() {
 
 function display() {
     const display = document.querySelector('.display');
-    if (!maxChars(tally) && clickValue == '.') {
-        display.textContent = '0.';
-    } else if (maxChars(tally) && clickValue == '.') {
-        display.textContent = maxChars(tally) + '.';
-    } else if (maxChars(tally) && clickValue != '.') {
-        display.textContent = maxChars(tally);
-    }
-    if (clickValue == 'clear') {
-        clear();
-    }
+    display.textContent = maxChars(tally);
 }
 
 function maxChars(value) {
     let str = value.toString().split('');
-    if (str[0] == 0 && clickValue != '.') {
+    console.log(str + ' str');
+    if (str[0] == 0) {
         str.shift();
     }
+
     if (str.length > 14) {
         let twelve = str.slice(0, 14);
         let join = twelve.join('');
         return +join;
     };
     let join = str.join('');
+    console.log(join + ' join');
     return +join;
 }
 
@@ -221,9 +219,13 @@ function percent() {
         display();
     }
 }
-//Currently trying to figure out why "clear" is not clearing the screen. The last thing I messed with that fudged it up was messing around with the conditionals in the display() function.
 
-
-// When you hit equals followed by any number, everything resets to start a new equation. But when you hit equals followed by a zero, nothing happens. Fix this.
-
-//Larger numbers get converted into exponents and then fudge up whats displayed on the screen. Fix this.
+function back(value) {
+    if (clickValue == 'back'){
+        let diff = value.toString().split('');
+        diff.pop();
+        tally = diff.join('');
+        controlNum = diff.join('');
+        display();
+    }
+}
