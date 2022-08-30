@@ -15,6 +15,24 @@ function div(x, y) {
     return x / y;
 }
 
+// document.addEventListener('keydown', (e) => {
+//     console.log(e.key + ' key stroke');
+//     if (e.key == 1) {
+//         clickValue = 1;
+//     }
+//     console.log(clickValue + ' clicky clicky');
+// });
+
+document.addEventListener('keydown', keyStroke);
+
+function keyStroke(e) {
+    console.log(e.key + ' key stroke 2');
+    if (e.key == 2) {
+        clickValue = 2;
+    }
+    console.log(clickValue + ' clicky clicky 2');
+}
+
 const btn = document.querySelectorAll('.button');
 
 btn.forEach(btn => btn.addEventListener('mousedown', () => {
@@ -24,6 +42,10 @@ btn.forEach(btn => btn.addEventListener('mousedown', () => {
 btn.forEach(btn => btn.addEventListener('mouseup', () => {
     btn.style.cssText = 'filter: brightness(auto);';
 }));
+
+let clickValue;
+
+// I need to turn the function below here into a standalone function that can be called by clicking and key strokes.
 
 btn.forEach(btn => {btn.addEventListener('click', (e) => {
     clickValue = e.target.id;
@@ -62,7 +84,6 @@ btn.forEach(btn => {btn.addEventListener('click', (e) => {
 });
 
 let tally = '';
-let clickValue;
 let firstNum;
 let controlNum = '';
 let sign;
