@@ -45,6 +45,7 @@ btn.forEach(btn => {btn.addEventListener('click', (e) => {
             display();
         }
     }
+    zeroDivide();
     percent();
     posNeg();
     operate();
@@ -77,28 +78,28 @@ function convertNumber() {
             break;
         case 'two':
             clickValue = 2;
-            break;  
+            break;
         case 'three':
             clickValue = 3;
             break;
         case 'four':
             clickValue = 4;
-            break;  
+            break;
         case 'five':
             clickValue = 5;
             break;
         case 'six':
             clickValue = 6;
-            break; 
+            break;
         case 'seven':
             clickValue = 7;
             break;
         case 'eight':
             clickValue = 8;
-            break;  
+            break;
         case 'nine':
             clickValue = 9;
-            break;           
+            break;
     }
 }
 
@@ -114,6 +115,10 @@ function display() {
 }
 
 function maxChars(value) {
+    // if (sign == 'divide' && value == 0 && clickValue == 'equals') {
+    //     let cut = tally.toString('fuck you');
+    //     return cut;
+    // }
     let str = value.toString().split('');
     console.log(str + ' str');
     if (str[0] == 0) {
@@ -134,7 +139,7 @@ function operate() {
     if (equalToggle == true && clickValue != 'equals') {
         if (typeof clickValue == 'number') {
             tally = '';
-            controlNum = ''; 
+            controlNum = '';
             controlNum += clickValue;
             if (controlNum == 0) {
                 controlNum = '';
@@ -153,7 +158,7 @@ function operate() {
     }
 
     if (clickValue == 'plus' || clickValue == 'minus' || clickValue == 'multiply' || clickValue == 'divide' || clickValue == 'equals') {
-        
+
         if (!tally) {
             sign = clickValue;
             return;
@@ -174,7 +179,7 @@ function operate() {
             }
             display();
         }
-        
+
         if (clickValue != 'equals') {
             firstNum = tally;
             controlNum = '';
@@ -236,5 +241,12 @@ function back(value) {
         tally = diff.join('');
         controlNum = diff.join('');
         display();
+    }
+}
+
+function zeroDivide() {
+    if (sign == 'divide' && maxChars(tally) == 0 && clickValue == 'equals') {
+        const display = document.querySelector('.display');
+        return display.textContent = 'The earth is shattered!';
     }
 }
