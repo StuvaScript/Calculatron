@@ -23,15 +23,7 @@ function div(x, y) {
 //     console.log(clickValue + ' clicky clicky');
 // });
 
-document.addEventListener('keydown', keyStroke);
-
-function keyStroke(e) {
-    console.log(e.key + ' key stroke 2');
-    if (e.key == 2) {
-        clickValue = 2;
-    }
-    console.log(clickValue + ' clicky clicky 2');
-}
+document.addEventListener('keydown', allActions);
 
 const btn = document.querySelectorAll('.button');
 
@@ -43,12 +35,16 @@ btn.forEach(btn => btn.addEventListener('mouseup', () => {
     btn.style.cssText = 'filter: brightness(auto);';
 }));
 
-let clickValue;
+btn.forEach(btn => {btn.addEventListener('click', allActions)});
 
-// I need to turn the function below here into a standalone function that can be called by clicking and key strokes.
+function allActions(e) {
+    console.log(e.type);
+    if (e.type == 'keydown') {
+        keyStroke(e.key);
+    } else if (e.type == 'click') {
+        clickValue = e.target.id;
+    }
 
-btn.forEach(btn => {btn.addEventListener('click', (e) => {
-    clickValue = e.target.id;
     convertNumber();
     convertPeriod();
     back(tally);
@@ -80,9 +76,9 @@ btn.forEach(btn => {btn.addEventListener('click', (e) => {
     console.log(equalToggle + ' equal toggle');
     console.log(periodToggle + ' period toggle');
     console.log('***********');
-    });
-});
+}
 
+let clickValue;
 let tally = '';
 let firstNum;
 let controlNum = '';
@@ -90,6 +86,40 @@ let sign;
 let equalToggle = false;
 let periodToggle = false;
 
+function keyStroke(value) {
+    if (value >= 0 && value <= 9) {
+        clickValue = +value;
+    }    
+    switch (value) {
+        case 'Backspace':
+            clickValue = 'back';
+            break;
+        case '%':
+            clickValue = 'percent';
+            break;
+        case '/':
+            clickValue = 'divide';
+            break;
+        case '*':
+            clickValue = 'multiply';
+            break;
+        case '-':
+            clickValue = 'minus';
+            break;
+        case '+':
+            clickValue = 'plus';
+            break;
+        case 'Enter':
+            clickValue = 'equals';
+            break;
+        case '.':
+            clickValue = 'period';
+            break;
+        case 'Delete':
+            clickValue = 'clear';
+            break;
+    } 
+}
 
 function convertNumber() {
     switch (clickValue) {
