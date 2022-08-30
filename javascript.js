@@ -56,6 +56,7 @@ btn.forEach(btn => {btn.addEventListener('click', (e) => {
     console.log(maxChars(tally) + ' max chars tally');
     console.log(sign + ' sign');
     console.log(equalToggle + ' equal toggle');
+    console.log(periodToggle + ' period toggle');
     console.log('***********');
     });
 });
@@ -66,6 +67,7 @@ let firstNum;
 let controlNum = '';
 let sign;
 let equalToggle = false;
+let periodToggle = false;
 
 
 function convertNumber() {
@@ -104,8 +106,11 @@ function convertNumber() {
 }
 
 function convertPeriod() {
-    if (clickValue == 'period') {
+    if (clickValue == 'period' && periodToggle == false) {
         clickValue = '.';
+        periodToggle = true;
+    } else if (clickValue == 'period' && periodToggle == true) {
+        clickValue = '';
     }
 }
 
@@ -164,6 +169,8 @@ function operate() {
             return;
         }
 
+        periodToggle = false;
+
         if (firstNum && clickValue != 'equals') {
             if (sign == 'plus') {
                 tally = add(+firstNum, +tally);
@@ -214,6 +221,7 @@ function clear() {
         controlNum = '';
         sign = '';
         equalToggle = false;
+        periodToggle = false;
         display();
     }
 }
