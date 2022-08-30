@@ -1,28 +1,4 @@
 
-function add(x, y) {
-    return x + y;
-}
-
-function sub(x, y) {
-    return x - y;
-}
-
-function mult(x, y) {
-    return x * y;
-}
-
-function div(x, y) {
-    return x / y;
-}
-
-// document.addEventListener('keydown', (e) => {
-//     console.log(e.key + ' key stroke');
-//     if (e.key == 1) {
-//         clickValue = 1;
-//     }
-//     console.log(clickValue + ' clicky clicky');
-// });
-
 document.addEventListener('keydown', allActions);
 
 const btn = document.querySelectorAll('.button');
@@ -171,10 +147,6 @@ function display() {
 }
 
 function maxChars(value) {
-    // if (sign == 'divide' && value == 0 && clickValue == 'equals') {
-    //     let cut = tally.toString('fuck you');
-    //     return cut;
-    // }
     let str = value.toString().split('');
     console.log(str + ' str');
     if (str[0] == 0) {
@@ -308,4 +280,20 @@ function zeroDivide() {
         const display = document.querySelector('.display');
         return display.textContent = 'The earth is shattered!';
     }
+}
+
+function add(x, y) {
+    return x + y;
+}
+
+function sub(x, y) {
+    return x - y;
+}
+
+function mult(x, y) {
+    return x * y;
+}
+
+function div(x, y) {
+    return x / y;
 }
