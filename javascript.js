@@ -181,9 +181,9 @@ function maxChars(value) {
         str.shift();
     }
 
-    if (str.length > 14) {
-        let twelve = str.slice(0, 14);
-        let join = twelve.join('');
+    if (str.length > 13) {
+        let thirteen = str.slice(0, 13);
+        let join = thirteen.join('');
         return +join;
     };
     let join = str.join('');
