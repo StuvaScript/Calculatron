@@ -1,3 +1,3 @@
-# Calculatron
+Using my JavaScript skills, I built a fully functioning calculator with basic mathematical operations such as addition, subtraction, multiplication, and division. I also added features like decimal and percentage calculations and used CSS to create a visually appealing user interface!
 
-I'm going to make a functioning calculator. I'm going to build a visual representation that is clickable that performs arithmetic depending on the operators chosen.
+See the live project at https://stuvascript.github.io/Calculatron/
