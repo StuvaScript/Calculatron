@@ -1,6 +1,17 @@
-document.addEventListener("keydown", allActions);
+// ---- GLOBAL VARIABLES ----
 
 const btn = document.querySelectorAll(".button");
+let clickValue;
+let tally = "";
+let firstNum;
+let controlNum = "";
+let sign;
+let equalToggle = false;
+let periodToggle = false;
+
+// ---- EVENT LISTENERS ----
+
+document.addEventListener("keydown", allActions);
 
 btn.forEach((btn) =>
   btn.addEventListener("mousedown", () => {
@@ -18,8 +29,9 @@ btn.forEach((btn) => {
   btn.addEventListener("click", allActions);
 });
 
+// ---- FUNCTIONS ----
+
 function allActions(e) {
-  console.log(e.type);
   if (e.type == "keydown") {
     keyStroke(e.key);
   } else if (e.type == "click") {
@@ -29,7 +41,6 @@ function allActions(e) {
   convertNumber();
   convertPeriod();
   back(tally);
-  console.log(clickValue + " click value");
   if (typeof clickValue == "number" || clickValue == ".") {
     controlNum += clickValue;
     if (controlNum == 0) {
@@ -49,23 +60,7 @@ function allActions(e) {
   posNeg();
   operate();
   clear();
-  console.log(firstNum + " first num");
-  console.log(controlNum + " control num");
-  console.log(tally + " tally");
-  console.log(maxChars(tally) + " max chars tally");
-  console.log(sign + " sign");
-  console.log(equalToggle + " equal toggle");
-  console.log(periodToggle + " period toggle");
-  console.log("***********");
 }
-
-let clickValue;
-let tally = "";
-let firstNum;
-let controlNum = "";
-let sign;
-let equalToggle = false;
-let periodToggle = false;
 
 function keyStroke(value) {
   if (value >= 0 && value <= 9) {
@@ -153,7 +148,6 @@ function display() {
 
 function maxChars(value) {
   let str = value.toString().split("");
-  console.log(str + " str");
   if (str[0] == 0) {
     str.shift();
   }
@@ -164,7 +158,6 @@ function maxChars(value) {
     return +join;
   }
   let join = str.join("");
-  console.log(join + " join");
   return +join;
 }
 
