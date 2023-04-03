@@ -7,7 +7,6 @@ btn.forEach((btn) =>
     btn.style.cssText = "filter: brightness(0.50);";
   })
 );
-//f
 
 btn.forEach((btn) =>
   btn.addEventListener("mouseup", () => {
