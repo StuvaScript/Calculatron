@@ -1,79 +1,132 @@
+@font-face {
+  font-family: Robotic;
+  src: url(./fonts/RETALIATOR.TTF);
+}
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    height: 100vh;
-    background: rgb(255, 255, 255);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100vh;
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5vw;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  gap: 1vw;
+}
+
+img {
+  width: 10%;
+  border-radius: 50%;
+  box-shadow: 5px 10px 10px rgb(104, 104, 104),
+    10px 15px 20px rgb(136, 136, 136);
+  animation: box-shadows 2s alternate infinite ease-in-out;
+}
+
+h1 {
+  color: rgb(144, 111, 3);
+  text-shadow: 5px 5px 5px rgb(63, 63, 63), 10px 10px 5px rgb(136, 136, 136);
+  letter-spacing: 1vw;
+  font-size: 7rem;
+  font-family: Robotic, Arial, Helvetica, sans-serif;
+  animation: text-shadows 2s alternate infinite ease-in-out;
+}
+
+@keyframes text-shadows {
+  from {
+    text-shadow: 5px 5px 5px rgb(63, 63, 63), 10px 10px 5px rgb(136, 136, 136);
+  }
+  to {
+    text-shadow: 10px 10px 10px rgb(63, 63, 63),
+      15px 15px 10px rgb(136, 136, 136);
+  }
 }
 
 #container {
-    width: 450px;
-    height: 600px;
-    background: rgb(240, 240, 240);
-    border: solid 5px rgb(144, 111, 3);
-    box-shadow: 5px 10px 10px rgb(104, 104, 104), 
-        10px 15px 20px rgb(136, 136, 136);
-    padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1.25fr repeat(5, 1fr);
-    gap: 2px;
-    border-radius: 5px;
+  width: 450px;
+  height: 600px;
+  background: rgb(240, 240, 240);
+  border: solid 5px rgb(144, 111, 3);
+  box-shadow: 5px 10px 10px rgb(104, 104, 104),
+    10px 15px 20px rgb(136, 136, 136);
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1.25fr repeat(5, 1fr);
+  gap: 2px;
+  border-radius: 5px;
+  animation: box-shadows 2s alternate infinite ease-in-out;
+}
+
+@keyframes box-shadows {
+  from {
+    box-shadow: 5px 10px 10px rgb(104, 104, 104),
+      10px 15px 20px rgb(136, 136, 136);
+  }
+  to {
+    box-shadow: 10px 15px 15px rgb(104, 104, 104),
+      15px 20px 25px rgb(136, 136, 136);
+  }
 }
 
 .display {
-    grid-column: 1 / 5;
-    background:  rgb(44, 44, 44);
-    color: rgb(204, 156, 0);
-    margin-bottom: 5px;
-    border-radius: 3px;
-    padding: 0 15px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 3em;
-    display: flex;
-    justify-content: end;
-    align-items: center;
+  grid-column: 1 / 5;
+  background: rgb(44, 44, 44);
+  color: rgb(204, 156, 0);
+  margin-bottom: 5px;
+  border-radius: 3px;
+  padding: 0 15px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 3em;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 div .operator {
-    background:  rgb(204, 156, 0);
-    color: rgb(44, 44, 44);
+  background: rgb(204, 156, 0);
+  color: rgb(44, 44, 44);
 }
 
 div .special {
-    background: rgba(40, 40, 40, 0.75);
+  background: rgba(40, 40, 40, 0.75);
 }
 
 div #period {
-    font-size: 2.5em;
+  font-size: 2.5em;
 }
 
 div #equals {
-    background: rgb(144, 111, 3);
-    color: rgb(44, 44, 44);
+  background: rgb(144, 111, 3);
+  color: rgb(44, 44, 44);
 }
 
 .button {
-    background: rgb(44, 44, 44);
-    border-radius: 5px;
-    font-size: 2em;
-    color: rgb(204, 156, 0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background: rgb(44, 44, 44);
+  border-radius: 5px;
+  font-size: 2em;
+  color: rgb(204, 156, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button:hover {
-    filter: brightness(0.75);
-    cursor: default;
-    user-select: none;
+  filter: brightness(0.75);
+  cursor: default;
+  user-select: none;
 }
 
 .fa-solid {
-    font-size: 0.75em;
+  font-size: 0.75em;
 }
